@@ -25,13 +25,11 @@ void linkedList<T,T1>::printList() { // Prints the list
 template<typename T, typename T1>
 void linkedList<T,T1>::append(T newItem, T1 newPrice, T newExpDate, T1 newCount, T newCategory) { // Adds new node at end of list
     Node<T,T1> *new_node = new Node<T,T1>; // Allocate new node
-
     new_node->item = newItem; // Put in the food values
     new_node->price = newPrice;
     new_node->expDate = newExpDate;
     new_node->count = newCount;
     new_node->category = newCategory;
-
     new_node->next = NULL;
     if (head == NULL) {
         head = new_node;
@@ -41,20 +39,6 @@ void linkedList<T,T1>::append(T newItem, T1 newPrice, T newExpDate, T1 newCount,
         head = new_node;
     }
     listSize++;
-}
-
-template<typename T, typename T1>
-void linkedList<T,T1>::reverseLinkedList() {
-    Node<T,T1>* current = head;
-    Node<T,T1> *prev = NULL, *next = NULL;
-
-    while (current != NULL) {
-        next = current->next; // Save next
-        current->next = prev; // Reverse current node pointer
-        prev = current; // Move pointers one position ahead
-        current = next;
-    }
-    head = prev;
 }
 
 template<typename T, typename T1>
@@ -106,8 +90,3 @@ template<typename T,typename T1>
 int linkedList<T,T1>::getSize(){
     return listSize;
 }
-
-
-
-
-// END OF FILE

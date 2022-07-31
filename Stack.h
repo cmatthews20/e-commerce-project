@@ -16,5 +16,3 @@ public:
 };
 
 #endif //PROJECTS_STACK_H
-
-// END OF FILE

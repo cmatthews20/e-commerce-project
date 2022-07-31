@@ -21,7 +21,6 @@ public:
     linkedList();
     void printList();
     void append(T newItem, T1 newPrice, T newExpDate, T1 newCount, T newCategory);
-    void reverseLinkedList();
     void displayCategory(T itemSearch);
     bool itemExists(T search);
     T1 getPrice(T search);
@@ -32,5 +31,3 @@ public:
 };
 
 #endif //PROJECTS_LINKEDLIST_H
-
-// END OF FILE

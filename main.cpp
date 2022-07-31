@@ -1,12 +1,12 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "linkedList.cpp"
 #include "dll.cpp"
 #include "Stack.cpp"
 #include "queue.cpp"
 #include "jsoncpp/include/json/json.h"
 #include "jsoncpp/include/json/value.h"
-#include <fstream>
-#include <string>
 
 using namespace std;
 
@@ -16,11 +16,9 @@ void sortedInsertPrice(Node<T, T1> **head, Node<T, T1> *newNode) {
     Node<T, T1> dummy;
     Node<T, T1> *current = &dummy;
     dummy.next = *head;
-
     while (current->next != nullptr && current->next->price < newNode->price) {
         current = current->next;
     }
-
     newNode->next = current->next;
     current->next = newNode;
     *head = dummy.next;
@@ -47,37 +45,29 @@ void sortedInsertExp(Node<T, T1> **head, Node<T, T1> *newNode) {
     Node<T, T1> dummy;
     Node<T, T1> *current = &dummy;
     dummy.next = *head;
-
     while (current->next != nullptr && current->next->expDate < newNode->expDate) {
         current = current->next;
     }
-
     newNode->next = current->next;
     current->next = newNode;
     *head = dummy.next;
 }
 
-// Sort list by espiry date and actually move nodes
 template<typename T, typename T1>
-void insertSortExp(Node<T, T1> **head) {
-    Node<T, T1> *result = nullptr;     // build the answer here
-    Node<T, T1> *current = *head;   // iterate over the original list
+void insertSortExp(Node<T, T1> **head) { // Sort list by expiry date and actually move nodes
+    Node<T, T1> *result = nullptr; // build the answer here
+    Node<T, T1> *current = *head; // iterate over the original list
     Node<T, T1> *next;
-
     while (current != nullptr) {
         // tricky: note the next pointer before we change it
         next = current->next;
-
         sortedInsertExp(&result, current);
         current = next;
     }
-
     *head = result;
 }
 
-
-//newCust is string for name, string index is an iterator, itemkey doesnt change
-template<typename T>
+template<typename T> //newCust is string for name, string index is an iterator, itemkey doesnt change
 void updateCust(const T &newCust, const T &custIndex, const T &itemKey = "Customers") {
     ofstream writeFile;
     Json::StyledStreamWriter writer; // for writing in json files
@@ -85,18 +75,14 @@ void updateCust(const T &newCust, const T &custIndex, const T &itemKey = "Custom
     Json::Reader nreader;             // for reading the data
     ifstream nfile(
             R"(C:\Users\Keegan\Documents\Github\ECE4400-Project\ECE4400-E-Commerce-Project\cmake-build-debug\.bin\customers.json)");
-
-    // check if there is any error is getting data from the json file
-    if (!nreader.parse(nfile, newNewValue)) {
-        cout << "STOOOOOP" << endl;
+    if (!nreader.parse(nfile, newNewValue)) { // check if there is any error is getting data from the json file
+        cout << ".JSON Parsing Error: nreader.parse() in updateCust()" << endl;
         cout << nreader.getFormattedErrorMessages();
         exit(1);
     }
-
     for (auto item: newNewValue) {
         for (const auto &dat: item) {
             if (item[custIndex].asString() == dat.asString()) {
-                //cout << dat << endl;
                 item[custIndex] = newCust;
                 newNewValue[itemKey] = item;
             } else {
@@ -104,7 +90,6 @@ void updateCust(const T &newCust, const T &custIndex, const T &itemKey = "Custom
             }
         }
     }
-
     writeFile.open(
             R"(C:\Users\Keegan\Documents\Github\ECE4400-Project\ECE4400-E-Commerce-Project\cmake-build-debug\.bin\customers.json)");
     writer.write(writeFile, newNewValue);
@@ -113,25 +98,20 @@ void updateCust(const T &newCust, const T &custIndex, const T &itemKey = "Custom
 
 template<typename T, typename T1>
 linkedList<T, T1> jsonReadFill(linkedList<T, T1> inventory) {
-    Json::Reader reader;             // for reading the data
-    Json::Value newValue;            // for modifying and storing new values
+    Json::Reader reader; // for reading the data
+    Json::Value newValue; // for modifying and storing new values
     Json::Value message;
     T Name, Category, ExpDate;
     T1 Count, Price;
-
     ifstream file(
             R"(C:\Users\Keegan\Documents\Github\ECE4400-Project\ECE4400-E-Commerce-Project\cmake-build-debug\.bin\inventory.json)");
-
-    // check if there is any error is getting data from the json file
-    if (!reader.parse(file, newValue)) {
+    if (!reader.parse(file, newValue)) { // check if there is any error is getting data from the json file
         cout << "error in jsonRead" << endl;
         cout << reader.getFormattedErrorMessages();
         exit(1);
     }
     for (auto msg: newValue) {
-//        cout << "msg: " << msg << endl;
         for (const auto &dat: msg) {
-//            cout << "dat: " << dat << endl;
             if (msg["1Name"] == dat) {
                 Name = dat.asCString();
             } else if (msg["5Category"] == dat) {
@@ -144,16 +124,14 @@ linkedList<T, T1> jsonReadFill(linkedList<T, T1> inventory) {
                 Count = stoi(dat.asCString());
             }
         }
-//        cout << Name << ", " << Category << ", " << Price << ", " << ExpDate << ", " << Count << endl;
         inventory.append(Name, Price, ExpDate, Count, Category);
     }
-//    inventory.printList();
     return inventory;
 }
 
 int main() {
-    // Reset customers.json to blank
-    for (int i = 1; i <= 3; i++)
+
+    for (int i = 1; i <= 3; i++) // Reset customers.json to blank
         updateCust<string>("_", to_string(i));
 
     // fill SLL with the contents of inventory.json
@@ -173,19 +151,15 @@ int main() {
     std::string search;
     std::string change;
     std::string customer;
-
     bool again = true;
 
-    while (again) { // MAIN PROGRAM LOOP
-
-        // Cart init (doubly linked list)
-        dll<std::string> cart;
+    while (again) { // MAIN SHOP LOOP
+        dll<std::string> cart; // Cart init (doubly linked list)
         int total = 0;
         std::cout << "Welcome to the Gimmick Gallery. Please input your name: ";
         std::cin >> customer;
         std::cout << std::endl;
         customerHistory.enQueue(customer); // Add customer to Circular queue
-
         inventory.printList(); // Print inventory to start session
         while (true) {
             std::cout
@@ -198,7 +172,6 @@ int main() {
             for (auto ch: menu)
                 emptyString.push_back(toupper(ch));
             menu = emptyString;
-
             if (menu == "S") {
                 inventory.printList(); // Print inventory
             }
@@ -220,8 +193,6 @@ int main() {
                 int amount;
                 std::cin >> amount;
                 std::cout << std::endl;
-//                amount = isdigit(amount);
-
                 if (inventory.itemExists(change)) {
                     if(((cart.countItem(change)+1)*amount) <= inventory.getCount(change)){
                         for (int i = 0;i<amount;i++) {
@@ -238,7 +209,6 @@ int main() {
                         std::endl << "Current Cart: ";
                         cart.printList();
                     }
-
                 } else {
                     std::cout << "Item not in inventory!\n\n";
                 }
@@ -252,7 +222,6 @@ int main() {
                     // Remove price check
                     tabStack.push(-1*(inventory.getPrice(change))); // remove price from tab
                     std::cout << change << " Removed!" << std::endl << "Current Cart: ";
-
                 }else{
                     std::cout << change << " Not in cart." << std::endl << "Current Cart: ";
                 }
@@ -266,7 +235,6 @@ int main() {
                 inventory.displayCategory(search);
             }
             if (menu == "C") {
-                // Count items
                 std::cout << "What cart item would you like to count?: ";
                 std::cin >> countCheck;
                 std::cout << std::endl;
@@ -283,15 +251,12 @@ int main() {
                     total = total + tabStack.pop();
                 }
                 std::cout<<"\nYour total is: $"<<total<<std::endl;
-
                 Node<std::string, int> *current = inventory.getHead(); // to iterate thru inventory
-
-                while(current!=NULL){
+                while(current!= nullptr){
                     int numInCart = cart.countItem(current->item);
                     current->count = current->count - numInCart;
                     current=current->next;
                 }
-
                 break;
             }
         }
@@ -320,26 +285,9 @@ int main() {
             updateCust(customer, to_string(custIndex));
             custIndex++;
             std::cout << customer << ", ";
-
         } else
             break;
     }
-
     std::cout << std::endl;
-
     return 0;
 }
-
-// Manual inventory creation
-//    inventory.append("Bob-Burger", 21, "2023/07/12", 4, "Deli");
-//    inventory.append("Kirkland-Kabob", 1738, "2022/03/23", 5, "Deli");
-//    inventory.append("Amr-Ale", 2025, "2024/02/02", 5, "Beverage");
-//    inventory.append("Shair-Sauce", 19, "2024/03/16", 5, "Beverage");
-//    inventory.append("Keegan-Kiwi", 18, "2024/02/14", 5, "Produce");
-//    inventory.append("Agwad-Apple", 4400, "2022/07/31", 5, "Produce");
-//    inventory.append("Cole'slaw", 100, "2023/05/17", 7, "Produce");
-//    inventory.append("Robert-Fudge", 40, "2023/05/23", 5, "Snack");
-//    inventory.append("Fares-Feta", 44, "2023/01/12", 5, "Snack");
-//    inventory.append("Noah-Nachos", 3, "2019/03/15", 5, "Snack");
-
-// END OF FILE

@@ -3,7 +3,6 @@ using namespace std;
 
 template<typename T>
 class dllNode {
-
 public:
     T data;
     dllNode* next;
@@ -18,56 +17,46 @@ private:
     dllNode<T> * head;
 public:
 
-    dll () {
+    dll (){
         head = nullptr;
     }
 
-    // Return the head node.
-    dllNode<T> * getHead () {
+    dllNode<T> * getHead (){ // Return head node of list
         return head;
     }
 
-    // Create a head node of the doubly linked list.
-    void createHead (T data) {
+    void createHead (T data) { // Create a head node of the doubly linked list
         head = new dllNode<T>(data);
     }
 
-    // Insert a new node into the doubly-linked list after the first found node.
-    void insert (T data, int after) {
-
+    void insert (T data, int after) { // Insert new node into the dll list after the first found node
         dllNode<T>* current = head;
 
-        // Traverse the linked list till the node is found after
-        // which the data is to be insert
+        // Traverse until the node is found after which the data is to be inserted
         while (current != nullptr && current->data != after) {
             current = current->next;
         }
 
         if (current != nullptr) {
             dllNode<T> * temp = new dllNode<T>(data);
-            // Save the location of node after current in next_node.
-            dllNode<T> * next_node = current->next;
-            // Point current's link to the new node to be inserted.
-            current->next = temp;
+            dllNode<T> * next_node = current->next; // Save the location of node after current
+            current->next = temp; // Point current's link to the new node to be inserted
 
-            // Point new node's next link (to the next node location previously stored).
-            // left link to the current node.
+            // Point new node next link (to the next node location previously stored). left link to the current node
             temp->prev  = current;
             temp->next = next_node;
 
-            // Point next node's prev to the newly added node i.e temp.
-            if (next_node != nullptr)
+            if (next_node != nullptr) // Point next node's prev to the newly added node (temp)
                 next_node->prev = temp;
         }
     }
 
-    // Delete the first node matching the data from the doubly linked list.
-    void deleteNode (T data_to_be_deleted) {
-        //If head node is to be deleted and list only contains head node, deletes head node
+    void deleteNode (T data_to_be_deleted) { // Delete the first node matching the data given
+        //If head node is to be deleted and list only contains head node, delete head node
         if (head->data == data_to_be_deleted && head->next == nullptr){
             head = nullptr;
         }
-            // If the head node is to be deleted, then the node to the next of head becomes the head node.
+            // If the head node is to be deleted, then the node to the next of head becomes head node
         else if (head->data == data_to_be_deleted ) {
             dllNode<T> * temp = head->next;
             delete head;
@@ -78,8 +67,7 @@ public:
             while (current->data != data_to_be_deleted ) {
                 current = current->next;
             }
-            // current is to be deleted.
-            if (current != nullptr) {
+            if (current != nullptr) { // current is to be deleted.
                 current->prev->next = current->next; // Update the next link of the node previous of current
                 if (current->next != nullptr) {
                     current->next->prev = current->prev; // Update the previous link of the node to the next of current
@@ -89,8 +77,7 @@ public:
         }
     }
 
-    // Append a node to the doubly linked list.
-    void append (T data) {
+    void append (T data) { // Append a node to the dll
 
         dllNode<T>* current = head;
         while (current->next != nullptr) {
@@ -101,8 +88,7 @@ public:
         temp->prev = current;
     }
 
-    // Display all the nodes in the doubly linked list.
-    void printList () {
+    void printList () { // Display all the nodes
         dllNode<T>* current = head;
         while (current != nullptr) {
             cout << current->data << ", ";
@@ -126,7 +112,7 @@ public:
         return (pos + 1);
     }
 
-    // Free the linked list.
+
     void freeList () {
         while (head != nullptr) {
             dllNode<T> * temp = head->next;
@@ -146,5 +132,4 @@ public:
         }
         return count;
     }
-
 };

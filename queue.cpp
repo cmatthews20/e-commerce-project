@@ -2,28 +2,23 @@
 
 template<typename T>
 void queue<T>::enQueue(T value) {
-
     if ((front == 0 && rear == size-1) || (rear == (front-1)%(size-1))){ // If queue full
-        //std::cout<<"\nQueue is Full";
         deQueue();
         enQueue(value);
         return;
     }
 
-    else if (front == -1) /* Insert First Element */
-    {
+    else if (front == -1){ // first element
         front = rear = 0;
         arr[rear] = value;
     }
 
-    else if (rear == size-1 && front != 0)
-    {
+    else if (rear == size-1 && front != 0){
         rear = 0;
         arr[rear] = value;
     }
 
-    else
-    {
+    else{
         rear++;
         arr[rear] = value;
     }
@@ -32,7 +27,6 @@ void queue<T>::enQueue(T value) {
 template<typename T>
 T queue<T>::deQueue() {
     if (front == -1){
-        //printf("\nQueue is Empty");
         return "empty";
     }
 
@@ -51,7 +45,7 @@ T queue<T>::deQueue() {
 }
 
 template<typename T>
-void queue<T>::displayQueue() {
+void queue<T>::displayQueue(){
     if (front == -1)
     {
         printf("\nQueue is Empty");
