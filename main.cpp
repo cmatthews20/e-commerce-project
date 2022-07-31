@@ -34,8 +34,7 @@ void insertSortPrice(Node<T, T1> **head) {
     Node<T, T1> *next;
 
     while (current != nullptr) {
-        next = current->next;// note the next pointer before changing it
-
+        next = current->next;// store the next pointer before changing it
         sortedInsertPrice(&result, current);
         current = next;
     }
