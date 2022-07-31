@@ -1,0 +1,21 @@
+{
+  "Misha's Mystery Meat":          {"Category":"Deli",    "Price":"2718", "Expiry Date":"12/16/2022", "Count": "1"},
+  "Bob's Burger":                  {"Category":"Deli",    "Price":"21",   "Expiry Date":"09/30/2023", "Count": "9"},
+  "Kirkland's Kabob":              {"Category":"Deli",    "Price":"1738", "Expiry Date":"12/25/2022", "Count": "6"},
+  "Glyn's Glizzies":               {"Category":"Deli",    "Price":"314",  "Expiry Date":"01/04/3045", "Count": "5"},
+  "Keegan's Kiwi":                 {"Category":"Produce", "Price":"420",  "Expiry Date":"02/08/2023", "Count": "0"},
+  "Joshua Bakeapples":             {"Category":"Produce", "Price":"2025", "Expiry Date":"02/09/2024", "Count": "2"},
+  "Dakota's Dragonfruit":          {"Category":"Produce", "Price":"69",   "Expiry Date":"03/14/2024", "Count": "8"},
+  "Zhang Zucchini":                {"Category":"Produce", "Price":"18",   "Expiry Date":"12/18/2023", "Count": "7"},
+  "Dr. Agwad's Apple Pie":         {"Category":"Produce", "Price":"1",    "Expiry Date":"04/20/2023", "Count": "2"},
+  "Coleslaw":                      {"Category":"Produce", "Price":"16",   "Expiry Date":"10/31/2022", "Count": "6"},
+  "Robert's Fudge":                {"Category":"Snacks",  "Price":"4300", "Expiry Date":"08/03/2022", "Count": "3"},
+  "Fares Fettuccini":              {"Category":"Snacks",  "Price":"4400", "Expiry Date":"07/31/2022", "Count": "3"},
+  "Reza Ramen":                    {"Category":"Snacks",  "Price":"100",  "Expiry Date":"05/17/2023", "Count": "8"},
+  "Thumeera Thin Crust Pizza":     {"Category":"Snacks",  "Price":"40",   "Expiry Date":"05/23/2023", "Count": "5"},
+  "Noah's Nachos":                 {"Category":"Snacks",  "Price":"300",  "Expiry Date":"03/15/2024", "Count": "9"},
+  "Mike McCarthy's Hard Lemonade": {"Category":"Drink",   "Price":"444",  "Expiry Date":"01/12/2023", "Count": "10"},
+  "Amr's Almond Milk":             {"Category":"Drink",   "Price":"3",    "Expiry Date":"09/28/2025", "Count": "0"},
+  "Malcolm's Milkshake":           {"Category":"Drink",   "Price":"916",  "Expiry Date":"08/06/2022", "Count": "12"},
+  "WorcesterSHAIR Sauce":          {"Category":"Drink",   "Price":"19",   "Expiry Date":"03/16/2024", "Count": "9"}
+}
