@@ -1,4 +1,3 @@
-
 #include "iostream"
 using namespace std;
 
@@ -104,7 +103,6 @@ public:
 
     // Display all the nodes in the doubly linked list.
     void printList () {
-
         dllNode<T>* current = head;
         while (current != nullptr) {
             cout << current->data << ", ";
@@ -130,7 +128,6 @@ public:
 
     // Free the linked list.
     void freeList () {
-
         while (head != nullptr) {
             dllNode<T> * temp = head->next;
             delete head;

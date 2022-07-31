@@ -10,8 +10,7 @@
 
 using namespace std;
 
-// Inserts a given node at its correct sorted position into a given
-// list sorted in increasing order
+// Insert given node at its correct sorted position into list sorted in increasing order
 template<typename T, typename T1>
 void sortedInsertPrice(Node<T, T1> **head, Node<T, T1> *newNode) {
     Node<T, T1> dummy;
@@ -27,7 +26,7 @@ void sortedInsertPrice(Node<T, T1> **head, Node<T, T1> *newNode) {
     *head = dummy.next;
 }
 
-// Given a list, change it to be in sorted order (using `sortedInsert()`).
+// Sort list by price and actually move nodes
 template<typename T, typename T1>
 void insertSortPrice(Node<T, T1> **head) {
     Node<T, T1> *result = nullptr;     // build the answer here
@@ -35,8 +34,7 @@ void insertSortPrice(Node<T, T1> **head) {
     Node<T, T1> *next;
 
     while (current != nullptr) {
-        // tricky: note the next pointer before we change it
-        next = current->next;
+        next = current->next;// note the next pointer before changing it
 
         sortedInsertPrice(&result, current);
         current = next;
@@ -45,8 +43,6 @@ void insertSortPrice(Node<T, T1> **head) {
     *head = result;
 }
 
-// Function to insert a given node at its correct sorted position into a given
-// list sorted in increasing order
 template<typename T, typename T1>
 void sortedInsertExp(Node<T, T1> **head, Node<T, T1> *newNode) {
     Node<T, T1> dummy;
@@ -62,7 +58,7 @@ void sortedInsertExp(Node<T, T1> **head, Node<T, T1> *newNode) {
     *head = dummy.next;
 }
 
-// Given a list, change it to be in sorted order (using `sortedInsert()`).
+// Sort list by espiry date and actually move nodes
 template<typename T, typename T1>
 void insertSortExp(Node<T, T1> **head) {
     Node<T, T1> *result = nullptr;     // build the answer here
@@ -79,37 +75,7 @@ void insertSortExp(Node<T, T1> **head) {
 
     *head = result;
 }
-//
-//void updateCount(const string& newCount, string itemKey) {
-//    ofstream writeFile;
-//    Json::StyledStreamWriter writer; // for writing in json files
-//    Json::Value newNewValue;
-//    Json::Reader nreader;             // for reading the data
-//    ifstream nfile("inventory.json");
-//
-//    // check if there is any error is getting data from the json file
-//    if (!nreader.parse(nfile, newNewValue)) {
-//        cout << "STOOOOOP" << endl;
-//        cout << nreader.getFormattedErrorMessages();
-//        exit(1);
-//    }
-//
-//    for (auto item: newNewValue) {
-//        for (auto dat: item) {
-//            if (item["Count"].asString() == dat.asString()) {
-//                cout << dat << endl;
-//                item["Count"] = newCount;
-//                newNewValue[itemKey] = item;
-//            } else {
-//                continue;
-//            }
-//        }
-//    }
-//
-//    writeFile.open("items.json");
-//    writer.write(writeFile, newNewValue);
-//    writeFile.close();
-//}
+
 
 //newCust is string for name, string index is an iterator, itemkey doesnt change
 template<typename T>
@@ -355,15 +321,6 @@ int main() {
 
     return 0;
 }
-
-// Stack tests
-//    Stack<int> sampleStack;
-//    sampleStack.push(1);
-//    sampleStack.push(2);
-//    sampleStack.push(3);
-//    std::cout << sampleStack.pop()<<std::endl;
-//    std::cout << sampleStack.pop()<<std::endl;
-//    std::cout << sampleStack.pop()<<std::endl;
 
 // Manual inventory creation
 //    inventory.append("Bob-Burger", 21, "2023/07/12", 4, "Deli");
