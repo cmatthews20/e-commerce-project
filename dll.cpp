@@ -64,9 +64,12 @@ public:
 
     // Delete the first node matching the data from the doubly linked list.
     void deleteNode (T data_to_be_deleted) {
-
-        // If the head node is to be deleted, then the node to the next of head becomes the head node.
-        if (head->data == data_to_be_deleted ) {
+        //If head node is to be deleted and list only contains head node, deletes head node
+        if (head->data == data_to_be_deleted && head->next == nullptr){
+            head = nullptr;
+        }
+            // If the head node is to be deleted, then the node to the next of head becomes the head node.
+        else if (head->data == data_to_be_deleted ) {
             dllNode<T> * temp = head->next;
             delete head;
             head = temp;

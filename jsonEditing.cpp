@@ -37,7 +37,7 @@ void updateCount(string newCount, string itemKey) {
 
 }
 
-int main() {
+int cb() {
     Json::Reader reader;             // for reading the data
     Json::Value newValue;            // for modifying and storing new values
     Json::Value message;

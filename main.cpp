@@ -78,10 +78,10 @@ void insertSortExp(Node<std::string, int>** head)
     *head = result;
 }
 
-int store() {
-    /*
-    linkedList<std::string, int> inventory;
+int main() {
 
+    // Inventory init (linked list)
+    linkedList<std::string, int> inventory;
     inventory.append("Bob-Burger", 21, "2023/07/12", 4, "Deli");
     inventory.append("Kirkland-Kabob", 1738, "2022/03/23", 5, "Deli");
     inventory.append("Amr-Ale", 2025, "2024/02/02", 5, "Beverage");
@@ -93,71 +93,93 @@ int store() {
     inventory.append("Fares-Feta", 44, "2023/01/12", 5, "Snack");
     inventory.append("Noah-Nachos", 3, "2019/03/15", 5, "Snack");
 
-    std::string customer;
-    std::cout << "Welcome to the store. Please input your name: "; std::cin >> customer; std::cout << std::endl;
+    // Customer history init (Circular Queue)
     queue<std::string> customerHistory(3);
-    customerHistory.enQueue(customer); // Add customer to Circular queue
-    inventory.printList(); // Print inventory
 
+    // Vars for later
+    Node<std::string, int>* head = inventory.getHead();
     std::string menu;
-
-
-
-
-    dll<std::string> cart;
     std::string search;
     std::string change;
+    std::string customer;
+    bool again = true;
 
-    Node<std::string, int>* head = inventory.getHead();
+    while(again){ // MAIN PROGRAM LOOP
 
-    while(true){
-        std::cout << "OPTIONS: Show Inventory = S  |  Sort by Price = P  |  Sort by Expiry = E  |  Add item = A  |  Remove item = R \n |  Filter = F  |  |  Count Item = C  |  Exit = X\n\n"<<"Enter: ";
-        std::cin >> menu; std::cout << std::endl;
-        if(menu=="S"){
-            inventory.printList(); // Print inventory
-        }
-        if(menu=="P"){
-            insertSortPrice(&head);
-            std::cout << "Inventory Sorted by Price!\n\n";
-            inventory.printList(); // Print inventory
-        }
-        if(menu=="C"){
+        // Cart init (doubly linked list)
+        dll<std::string> cart;
 
-        }
-        if(menu=="E"){
-            insertSortExp(&head);
-            std::cout << "Inventory Sorted by Expiry!\n";
-            inventory.printList(); // Print inventory
-        }
-        if(menu=="F"){
-            std::cout << "Filter by Type:"; std::cin >> search; std::cout << std::endl;
-            std::cout << "Filter Applied!\n";
-            inventory.displayCategory(search);
-        }
-        if(menu=="X"){
-            std::cout << "Thank you for Shopping with us :)\n\n";
-            break;
-        }
-        if(menu=="A"){
-            std::cout << "What would you like to add?: ";
-            std::cin >> change; std::cout << std::endl;
-            if(cart.getHead() == NULL){cart.createHead(change);}
-            else{
-                cart.append(change);
+        std::cout << "Welcome to the store. Please input your name: "; std::cin >> customer; std::cout << std::endl;
+        customerHistory.enQueue(customer); // Add customer to Circular queue
+
+        inventory.printList(); // Print inventory to start session
+        while(true){
+            std::cout << "OPTIONS: Show Inventory = S  |  Sort by Price = P  |  Sort by Expiry = E  |  Add item = A  |  Remove item = R \n |  Filter = F  |  |  Count Item = C  |  Display Cart = D  |  Checkout = X\n\n"<<"Enter: ";
+            std::cin >> menu; std::cout << std::endl;
+            if(menu=="S"){
+                inventory.printList(); // Print inventory
             }
-            std::cout << change << " Added!"<<std::endl<<"Current Cart: ";
-            cart.printList();
+            if(menu=="P"){
+                insertSortPrice(&head);
+                std::cout << "Inventory Sorted by Price!\n\n";
+                inventory.printList(); // Print inventory
+            }
+            if(menu=="E"){
+                insertSortExp(&head);
+                std::cout << "Inventory Sorted by Expiry!\n";
+                inventory.printList(); // Print inventory
+            }
+            if(menu=="A"){
+                std::cout << "What would you like to add?: ";
+                std::cin >> change; std::cout << std::endl;
+                if(cart.getHead() == NULL){cart.createHead(change);}
+                else{
+                    cart.append(change);
+                }
+                std::cout << change << " Added!"<<std::endl<<"Current Cart: ";
+                cart.printList();
+            }
+            if(menu=="R"){
+                std::cout << "What would you like to remove?: ";
+                std::cin >> change; std::cout << std::endl;
+                cart.deleteNode(change);
+                std::cout << change << " Removed!"<<std::endl<<"Current Cart: ";
+                cart.printList();
+            }
+            if(menu=="F"){
+                std::cout << "Filter by Type:"; std::cin >> search; std::cout << std::endl;
+                std::cout << "Filter Applied!\n";
+                inventory.displayCategory(search);
+            }
+            if(menu=="C"){
+
+            }
+            if(menu=="D"){
+                std::cout<<"Current Cart: ";
+                cart.printList();
+            }
+            if(menu=="X"){
+                std::cout << "Thank you for Shopping with us :)\n\n Your Cart: ";
+                cart.printList();
+                break;
+            }
         }
-        if(menu=="R"){
-            std::cout << "What would you like to remove?: ";
-            std::cin >> change; std::cout << std::endl;
-            cart.deleteNode(change);
-            std::cout << change << " Removed!"<<std::endl<<"Current Cart: ";
-            cart.printList();
+
+        while(true){ // Next customer decision loop
+            std::cout<< "Next customer? (y/n): "; std::cin>>customer; std::cout<<std::endl;
+            if(customer == "y"){
+                break;
+            }
+            if(customer == "n"){
+                again = false;
+                break;
+            }
         }
+        cart.freeList();
     }
 
-    customer = "asdf";
+
+    customer = "init";
     std::cout<<"Today's Shoppers: ";
     while(true){
         customer = customerHistory.deQueue();
@@ -216,7 +238,9 @@ int store() {
 //    std::cout << sampleStack.pop()<<std::endl;
 //    std::cout << sampleStack.pop()<<std::endl;
 //    std::cout << sampleStack.pop()<<std::endl;
-*/
+
+
+
 
     return 0;
 }
