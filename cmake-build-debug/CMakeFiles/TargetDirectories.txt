@@ -1,0 +1,4 @@
+C:/Users/Keegan/Documents/Github/ECE4400-Project/ECE4400-E-Commerce-Project/cmake-build-debug/CMakeFiles/jsoncpp.dir
+C:/Users/Keegan/Documents/Github/ECE4400-Project/ECE4400-E-Commerce-Project/cmake-build-debug/CMakeFiles/ECE4400_Project.dir
+C:/Users/Keegan/Documents/Github/ECE4400-Project/ECE4400-E-Commerce-Project/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Keegan/Documents/Github/ECE4400-Project/ECE4400-E-Commerce-Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,12 @@
+{
+  "0":{" Name":"Bob's Burger",          "Category":"Deli",    "Price":"21",   "Expiry Date":"2023/07/12",  "Count":"9"},
+  "1":{" Name":"Kirkland's Kabob",      "Category":"Deli",    "Price":"1738", "Expiry Date":"2022/03/23",  "Count":"6"},
+  "2":{" Name":"Amr's Almond Milk",     "Category":"Drink",   "Price":"2025", "Expiry Date":"2024/02/02",  "Count":"2"},
+  "3":{" Name":"WorcesterSHAIR Sauce",  "Category":"Drink",   "Price":"19",   "Expiry Date":"2024/03/16",  "Count":"9"},
+  "4":{" Name":"Keegan's Kiwi",         "Category":"Produce", "Price":"18",   "Expiry Date":"2024/02/14",  "Count":"7"},
+  "5":{" Name":"Dr. Agwad's Apple Pie", "Category":"Produce", "Price":"4400", "Expiry Date":"2022/07/31",  "Count":"3"},
+  "6":{" Name":"Coleslaw",              "Category":"Produce", "Price":"100",  "Expiry Date":"2023/05/17",  "Count":"8"},
+  "7":{" Name":"Robert's Fudge",        "Category":"Snacks",  "Price":"40",   "Expiry Date":"2023/05/23",  "Count":"5"},
+  "8":{" Name":"Fares Fettuccini",      "Category":"Snacks",  "Price":"444",  "Expiry Date":"2023/01/12",  "Count":"10"},
+  "9":{" Name":"Noah's Nachos",         "Category":"Snacks",  "Price":"3",    "Expiry Date":"2019/03/15",  "Count":"9"}
+}

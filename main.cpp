@@ -78,8 +78,8 @@ void insertSortExp(Node<std::string, int>** head)
     *head = result;
 }
 
-int main() {
-
+int store() {
+    /*
     linkedList<std::string, int> inventory;
 
     inventory.append("Bob-Burger", 21, "2023/07/12", 4, "Deli");
@@ -216,9 +216,7 @@ int main() {
 //    std::cout << sampleStack.pop()<<std::endl;
 //    std::cout << sampleStack.pop()<<std::endl;
 //    std::cout << sampleStack.pop()<<std::endl;
-
-
-
+*/
 
     return 0;
 }
