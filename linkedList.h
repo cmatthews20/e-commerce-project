@@ -1,7 +1,3 @@
-// Template not verified
-// Class not verified
-// Correct operation last verified at 6:32 PM saturday
-
 #ifndef PROJECTS_LINKEDLIST_H
 #define PROJECTS_LINKEDLIST_H
 #include <iostream>

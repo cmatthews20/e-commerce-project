@@ -1,7 +1,3 @@
-// Template not verified
-// Class not verified
-// Correct operation last verified around 7:30 PM saturday
-
 #ifndef PROJECTS_STACK_H
 #define PROJECTS_STACK_H
 #include <iostream>

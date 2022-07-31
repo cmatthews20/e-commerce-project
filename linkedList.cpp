@@ -1,7 +1,3 @@
-// Template not verified
-// Class not verified
-// Correct operation last verified at 6:32 PM saturday
-
 #include "linkedList.h"
 
 template<typename T, typename T1>

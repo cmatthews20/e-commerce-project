@@ -1,7 +1,3 @@
-// Template not verified
-// Class not verified
-// Correct operation last verified at 8:08 PM saturday
-
 #include "queue.h"
 
 template<typename T>

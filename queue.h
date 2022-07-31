@@ -1,7 +1,3 @@
-// Template not verified
-// Class not verified
-// Correct operation last verified at 8:08 PM saturday
-
 #ifndef PROJECTS_QUEUE_H
 #define PROJECTS_QUEUE_H
 #include <iostream>
@@ -22,8 +18,5 @@ public:
     void displayQueue();
 
 };
-
-
-
 
 #endif //PROJECTS_QUEUE_H
