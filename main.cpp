@@ -239,14 +239,14 @@ int main() {
                 std::cout << "What would you like to remove?: ";
                 std::cin >> change;
                 std::cout << std::endl;
-                if(cart.countItem(change) != 0){
+                if(cart.countItem(change) > 0){
                     cart.deleteNode(change);
                     // Remove price check
                     tabStack.push(-1*(inventory.getPrice(change))); // remove price from tab
                     std::cout << change << " Removed!" << std::endl << "Current Cart: ";
 
                 }else{
-                    std::cout << change << " Removed!" << std::endl << "Current Cart: ";
+                    std::cout << change << " Not in cart." << std::endl << "Current Cart: ";
                 }
                 cart.printList();
             }
@@ -274,7 +274,7 @@ int main() {
                 while(tabStack.peek()!=0){
                     total = total + tabStack.pop();
                 }
-                std::cout<<"\nYour total: $"<<total<<std::endl;
+                std::cout<<"\nYour total is: $"<<total<<std::endl;
 
                 Node<std::string, int> *current = inventory.getHead(); // to iterate thru inventory
 
