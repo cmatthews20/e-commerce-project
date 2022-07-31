@@ -217,17 +217,26 @@ int main() {
                 std::cout << "What would you like to add?: ";
                 std::cin >> change;
                 std::cout << std::endl;
+                std::cout << "How many " << change << " would you like to add?: ";
+                int amount;
+                std::cin >> amount;
+                std::cout << std::endl;
+//                amount = isdigit(amount);
+
                 if (inventory.itemExists(change)) {
-                    if((cart.countItem(change)+1) <= inventory.getCount(change)){
-                        if (cart.getHead() == nullptr) { cart.createHead(change); }
-                        else {
-                            cart.append(change);
+                    if(((cart.countItem(change)+1)*amount) <= inventory.getCount(change)){
+                        for (int i = 0;i<amount;i++) {
+                            if (cart.getHead() == nullptr) { cart.createHead(change); }
+                            else {
+                                cart.append(change);
+                            }
+                            tabStack.push(inventory.getPrice(change)); // Add to tab
                         }
-                        tabStack.push(inventory.getPrice(change)); // Add to tab
-                        std::cout << change << " Added!" << std::endl << "Current Cart: ";
+                        std::cout << amount << " " << change << " Added!" << std::endl << "Current Cart: ";
                         cart.printList();
                     }else{
-                        std::cout << "Sorry, We have run out of that item. You cannot add it to your cart." << std::endl << "Current Cart: ";
+                        std::cout << "Sorry, We don't have " << amount << " of that item. You cannot add it to your cart." <<
+                        std::endl << "Current Cart: ";
                         cart.printList();
                     }
 
