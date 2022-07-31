@@ -137,4 +137,17 @@ public:
             head = temp;
         }
     }
+
+    int countItem(T itemName){
+        int count = 0;
+        dllNode<T>* current = head;
+        while(current!=NULL){
+            if(current->data == itemName){
+                count++;
+            }
+            current = current->next;
+        }
+        return count;
+    }
+
 };

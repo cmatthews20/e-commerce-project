@@ -11,11 +11,10 @@ add_executable(ECE4400_Project
         linkedList.h
         dll.cpp
         dll.h
-        stack.cpp
-        stack.h
+        Stack.cpp
+        Stack.h
         queue.cpp
         queue.h
         helper.cpp
         jsoncpp/dist/jsoncpp.cpp
-        jsonEditing.cpp
         )

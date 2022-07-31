@@ -7,6 +7,7 @@
 template<typename T, typename T1>
 linkedList<T,T1>::linkedList() { // Constructor for LL
     head = NULL;
+    listSize = 0;
 }
 
 template<typename T, typename T1>
@@ -43,6 +44,7 @@ void linkedList<T,T1>::append(T newItem, T1 newPrice, T newExpDate, T1 newCount,
         new_node->next = head;
         head = new_node;
     }
+    listSize++;
 }
 
 template<typename T, typename T1>
@@ -73,6 +75,42 @@ void linkedList<T,T1>::displayCategory(T itemSearch){
         current = current->next;
     }
 }
+
+template<typename T,typename T1>
+bool linkedList<T,T1>::itemExists(T search){
+    Node<T,T1>* current = head;
+    while(current!=NULL){
+        if(current->item == search){
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+template<typename T,typename T1>
+T1 linkedList<T,T1>::getPrice(T search){
+    Node<T,T1>* current = head;
+    while(current!=NULL && current->item!=search){
+        current = current->next;
+    }
+    return current->price;
+}
+
+template<typename T,typename T1>
+T1 linkedList<T,T1>::getCount(T search){
+    Node<T,T1>* current = head;
+    while(current!=NULL && current->item!=search){
+        current = current->next;
+    }
+    return current->count;
+}
+
+template<typename T,typename T1>
+int linkedList<T,T1>::getSize(){
+    return listSize;
+}
+
 
 
 

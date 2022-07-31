@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.23"
+						"string" : "3.22"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -41,7 +41,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ECE4400_Project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ECE4400_Project-Debug-c540daec6a97fba7d059.json",
+					"jsonFile" : "target-ECE4400_Project-Debug-0ad26b50c95aa5ef56ab.json",
 					"name" : "ECE4400_Project",
 					"projectIndex" : 0
 				},

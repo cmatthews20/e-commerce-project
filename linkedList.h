@@ -7,11 +7,12 @@
 #include <iostream>
 
 template<typename T, typename T1>
-struct Node{ // Struct for a single node of a linked list
+class Node{ // Struct for a single node of a linked list
+public:
     T item;
-    T1 price;
+    T1 price; // could have whole num prices, or decimals
     T expDate;
-    T1 count;
+    int count; // cant have half an item
     T category;
     Node* next;
 };
@@ -19,12 +20,17 @@ struct Node{ // Struct for a single node of a linked list
 template<typename T, typename T1>
 class linkedList {
     Node<T,T1>* head;
+    int listSize;
 public:
     linkedList();
     void printList();
     void append(T newItem, T1 newPrice, T newExpDate, T1 newCount, T newCategory);
     void reverseLinkedList();
     void displayCategory(T itemSearch);
+    bool itemExists(T search);
+    T1 getPrice(T search);
+    T1 getCount(T search);
+    int getSize();
     
     Node<T,T1>* getHead(){return head;}
 };
