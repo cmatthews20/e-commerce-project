@@ -59,6 +59,21 @@ void linkedList<T,T1>::reverseLinkedList() {
     head = prev;
 }
 
+template<typename T, typename T1>
+void linkedList<T,T1>::displayCategory(T itemSearch){
+    Node<T,T1>* current = head;
+    while(current != NULL){
+        if(current->category == itemSearch){
+            std::cout<< current->item << ":\t\t Price:$";
+            std::cout<< current->price << "\t\tExp: ";
+            std::cout<< current->expDate << ",\t\t";
+            std::cout<< current->count << " Remaining,\t\t";
+            std::cout<< current->category << " Dept.\n"<<std::endl;
+        }
+        current = current->next;
+    }
+}
+
 
 
 // END OF FILE

@@ -3,15 +3,19 @@
 #include "dll.cpp"
 #include "stack.cpp"
 #include "queue.cpp"
+#include "jsoncpp/include/json/json.h"
+#include "jsoncpp/include/json/value.h"
+#include <fstream>
 #include <string>
 using namespace std;
 
-// Function to insert a given node at its correct sorted position into a given
+// Inserts a given node at its correct sorted position into a given
 // list sorted in increasing order
-void sortedInsertPrice(Node<std::string, int>** head, Node<std::string, int>* newNode)
+template<typename T,typename T1>
+void sortedInsertPrice(Node<T,T1>** head, Node<T, T1>* newNode)
 {
-    Node<std::string, int> dummy;
-    Node<std::string, int>* current = &dummy;
+    Node<T,T1> dummy;
+    Node<T,T1>* current = &dummy;
     dummy.next = *head;
 
     while (current->next != NULL && current->next->price < newNode->price) {
@@ -24,11 +28,12 @@ void sortedInsertPrice(Node<std::string, int>** head, Node<std::string, int>* ne
 }
 
 // Given a list, change it to be in sorted order (using `sortedInsert()`).
-void insertSortPrice(Node<std::string, int>** head)
+template<typename T,typename T1>
+void insertSortPrice(Node<T, T1>** head)
 {
-    Node<std::string, int>* result = NULL;     // build the answer here
-    Node<std::string, int>* current = *head;   // iterate over the original list
-    Node<std::string, int>* next;
+    Node<T,T1>* result = NULL;     // build the answer here
+    Node<T,T1>* current = *head;   // iterate over the original list
+    Node<T,T1>* next;
 
     while (current != NULL)
     {
@@ -44,10 +49,11 @@ void insertSortPrice(Node<std::string, int>** head)
 
 // Function to insert a given node at its correct sorted position into a given
 // list sorted in increasing order
-void sortedInsertExp(Node<std::string, int>** head, Node<std::string, int>* newNode)
+template<typename T,typename T1>
+void sortedInsertExp(Node<T,T1>** head, Node<T,T1>* newNode)
 {
-    Node<std::string, int> dummy;
-    Node<std::string, int>* current = &dummy;
+    Node<T,T1> dummy;
+    Node<T,T1>* current = &dummy;
     dummy.next = *head;
 
     while (current->next != NULL && current->next->expDate < newNode->expDate) {
@@ -60,11 +66,12 @@ void sortedInsertExp(Node<std::string, int>** head, Node<std::string, int>* newN
 }
 
 // Given a list, change it to be in sorted order (using `sortedInsert()`).
-void insertSortExp(Node<std::string, int>** head)
+template<typename T,typename T1>
+void insertSortExp(Node<T,T1>** head)
 {
-    Node<std::string, int>* result = NULL;     // build the answer here
-    Node<std::string, int>* current = *head;   // iterate over the original list
-    Node<std::string, int>* next;
+    Node<T,T1>* result = NULL;     // build the answer here
+    Node<T,T1>* current = *head;   // iterate over the original list
+    Node<T,T1>* next;
 
     while (current != NULL)
     {
@@ -78,7 +85,102 @@ void insertSortExp(Node<std::string, int>** head)
     *head = result;
 }
 
+void updateCount(const string& newCount, string itemKey) {
+    ofstream writeFile;
+    Json::StyledStreamWriter writer; // for writing in json files
+    Json::Value newNewValue;
+    Json::Reader nreader;             // for reading the data
+    ifstream nfile("inventory.json");
+
+    // check if there is any error is getting data from the json file
+    if (!nreader.parse(nfile, newNewValue)) {
+        cout << "STOOOOOP" << endl;
+        cout << nreader.getFormattedErrorMessages();
+        exit(1);
+    }
+
+    for (auto item: newNewValue) {
+        for (auto dat: item) {
+            if (item["Count"].asString() == dat.asString()) {
+                cout << dat << endl;
+                item["Count"] = newCount;
+                newNewValue[itemKey] = item;
+            } else {
+                continue;
+            }
+        }
+    }
+
+    writeFile.open("items.json");
+    writer.write(writeFile, newNewValue);
+    writeFile.close();
+}
+
+//newCust is string for name, string index is an iterator, itemkey doesnt change
+void updateCust(const string& newCust, const string& custIndex, const string& itemKey = "Customers") {
+    ofstream writeFile;
+    Json::StyledStreamWriter writer; // for writing in json files
+    Json::Value newNewValue;
+    Json::Reader nreader;             // for reading the data
+    ifstream nfile("C:\\Users\\Keegan\\Documents\\Github\\ECE4400-Project\\ECE4400-E-Commerce-Project\\cmake-build-debug\\.bin\\customers.json");
+
+    // check if there is any error is getting data from the json file
+    if (!nreader.parse(nfile, newNewValue)) {
+        cout << "STOOOOOP" << endl;
+        cout << nreader.getFormattedErrorMessages();
+        exit(1);
+    }
+
+    for (auto item: newNewValue) {
+        for (auto dat: item) {
+            if (item[custIndex].asString() == dat.asString()) {
+                //cout << dat << endl;
+                item[custIndex] = newCust;
+                newNewValue[itemKey] = item;
+            } else {
+                continue;
+            }
+        }
+    }
+
+    writeFile.open("C:\\Users\\Keegan\\Documents\\Github\\ECE4400-Project\\ECE4400-E-Commerce-Project\\cmake-build-debug\\.bin\\customers.json");
+    writer.write(writeFile, newNewValue);
+    writeFile.close();
+}
+
+// newCust is the index of customers, custName is the customers name
+//void updateCust(const string& newCust, const string& custName) {
+//    ofstream writeFile;
+//    Json::StyledStreamWriter writer; // for writing in json files
+//    Json::Value newNewValue;
+//    Json::Reader nreader;             // for reading the data
+//    ifstream nfile("customers.json");
+//
+//    // check if there is any error is getting data from the json file
+//    if (!nreader.parse(nfile, newNewValue)) {
+//        cout << "STOOOOOP" << endl;
+//        cout << nreader.getFormattedErrorMessages();
+//        exit(1);
+//    }
+//
+//    for (auto item: newNewValue) {
+//        for (auto dat: item) {
+//            if (newCust == dat.asString()) {
+//                cout << dat << endl;
+//                item[newCust] = custName;
+//                newNewValue[custName] = item;
+//            } else {
+//                continue;
+//            }
+//        }
+//    }
+//
+//    writeFile.open("customers.json");
+//    writer.write(writeFile, newNewValue);
+//    writeFile.close();
+//}
 int main() {
+//    jsonRead();
 
     // Inventory init (linked list)
     linkedList<std::string, int> inventory;
@@ -102,6 +204,7 @@ int main() {
     std::string search;
     std::string change;
     std::string customer;
+    float total;
     bool again = true;
 
     while(again){ // MAIN PROGRAM LOOP
@@ -181,11 +284,15 @@ int main() {
 
     customer = "init";
     std::cout<<"Today's Shoppers: ";
+    int custIndex = 1;
     while(true){
         customer = customerHistory.deQueue();
-        if(customer != "empty")
-            std::cout << customer<<", ";
-        else
+        if(customer != "empty") {
+            updateCust(customer,to_string(custIndex));
+            custIndex++;
+            std::cout << customer << ", ";
+
+        } else
             break;
     }
 
