@@ -2,10 +2,15 @@
 eCommerce application for ECE4400 (Data Structures)
 
 ### Collaborators
+
 [@cmatthews20](https://github.com/cmatthews20)
+
 [@K-rolls](https://github.com/K-rolls)
+
 [@rwlush](https://github.com/rwlush)
+
 [@KirklandKeeping](https://github.com/KirklandKeeping)
+
 
 ### The application allows the following functions:
 
